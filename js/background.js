@@ -1,15 +1,18 @@
-var trees;
-getTree();
+var bookmarkTrees;
+setBookmarkTree();
 
 //イベント
 chrome.extension.onMessage.addListener(
 	function(request, sender, sendResponse){
-		if(!request) return;
+		if(!request){
+			sendResponse();
+			return;
+		}
 
 		var status = request.status;
 		switch(status){
-			case "getTree":
-				sendResponse(trees);
+			case "getBookmarkTree":
+				sendResponse(bookmarkTrees);
 				break;
 			default :
 				sendResponse();
@@ -17,39 +20,32 @@ chrome.extension.onMessage.addListener(
 		}
 });
 chrome.bookmarks.onRemoved.addListener(function(id, info){
-	getTree();
+	setBookmarkTree();
 });
 chrome.bookmarks.onImportEnded.addListener(function(){
-	getTree();
+	setBookmarkTree();
 });
 chrome.bookmarks.onMoved.addListener(function(id, info){
-	getTree();
+	setBookmarkTree();
 });
 chrome.bookmarks.onCreated.addListener(function(id, node){
-	getTree();
+	setBookmarkTree();
 });
 chrome.bookmarks.onChanged.addListener(function(id, info){
-	getTree();
+	setBookmarkTree();
 });
 chrome.bookmarks.onChildrenReordered.addListener(function(id, info){
-	getTree();
+	setBookmarkTree();
 });
 
-function getTree(){
+function setBookmarkTree(){
 	chrome.bookmarks.getTree(function(tree){
-		trees = tree;
+		bookmarkTrees = tree;
+	});
+}
+function getBookmarkTree(callback){
+	chrome.bookmarks.getTree(function(tree){
+		callback(tree);
 	});
 }
 
-//bookmark tree操作
-function isFolder(node){
-	return !node.url;
-}
-
-//utility
-function getOrigin(url){
-	var urlAry = url.replace(/:\//, "").split(/\//);
-	var scheme = urlAry[0];
-	var host_port = urlAry[1];
-	return scheme + "://" + host_port;
-}

@@ -1,0 +1,153 @@
+html body .bm-view{
+	background: white;
+	border: 5px #000 solid;
+	border-top: 15px #000 solid;
+	margin: 0;
+	padding: 0;
+	width: 300px;
+}
+
+html body .bm-view div,
+html body .bm-view ul,
+html body .bm-view li,
+html body .bm-view input,
+html body .bm-view p,
+html body .bm-view span,
+html body .bm-view a{
+	box-shadow: none;
+	font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",sans-serif;
+	margin: 0;
+	padding: 0;
+	text-shadow: none;
+}
+
+html body .bm-view div,
+html body .bm-view ul,
+html body .bm-view li{
+	display: block;
+	left: 0;
+	top: 0;
+}
+
+/* フォーム */
+html body .bm-view .bm-form{
+	background: #000;
+	border-bottom: 1px transparent solid;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+html body .bm-view .bm-form .bm-input{
+	background: white;
+	border: 1px transparent solid;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	color: black;
+	display: block;
+	font-size: 16px;
+	line-height: 20px;
+	margin: 0 0 10px 20px;
+	outline: none;
+	padding: 5px;
+	width: 260px;
+}
+html body .bm-view .bm-form .bm-mark-top{
+	border: 12px solid;
+	border-color: transparent white white transparent;
+	height: 0;
+	left: 0;
+	position: absolute;
+	bottom: 10px;
+	width: 0;
+	z-index: 9;
+}
+html body .bm-view .bm-form .bm-mark-bottom{
+	border: 12px solid;
+	border-color: white white transparent transparent;
+	height: 0;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 0;
+	z-index: 9;
+}
+html body .bm-view .bm-form .bm-input-reset{
+	color: #999;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+	height: 18px;
+	line-height: 18px;
+	position: absolute;
+	right: 15px;
+	text-decoration: none;
+	top: 8px;
+}
+html body .bm-view .bm-form .bm-close{
+	color: #999;
+	cursor: pointer;
+	font-size: 14px;
+	height: 14px;
+	line-height: 14px;
+	position: absolute;
+	right: -3px;
+	text-decoration: none;
+	top: -15px;
+}
+html body .bm-view .bm-form .bm-close:hover{
+	color: red;
+}
+
+/* 枠 */
+html body .bm-view .bm-content{
+	display: none;
+}
+html body .bm-view .bm-list{
+	list-style: none;
+}
+
+/* フォルダ */
+html body .bm-view .bm-folder-item{
+	
+}
+html body .bm-view .bm-folder-title{
+	display: none;
+}
+
+/* ブックマーク */
+html body .bm-view .bm-item{
+	border-bottom: 3px #000 solid;
+	padding: 5px 10px;
+}
+html body .bm-view .bm-item .bm-link{
+	outline: none;
+	text-align: left;
+	text-decoration: none;
+}
+html body .bm-view .bm-item .bm-item-title{
+	color: #353535;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 16px;
+	margin: 0 0 5px 0;
+	padding: 0;
+	text-align: left;
+	word-wrap: break-word;
+}
+html body .bm-view .bm-item .bm-item-title-search{
+	display: none;
+}
+html body .bm-view .bm-item .bm-url{
+	color: #555;
+	font-size: 14px;
+	line-height: 16px;
+	margin: 0;
+	padding: 0;
+	word-wrap: break-word;
+}
+html body .bm-view .bm-item .bm-url-search{
+	display: none;
+}
+html body .bm-view .bm-item.bm-focus{
+	background: gold;
+}

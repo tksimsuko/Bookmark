@@ -15,7 +15,7 @@
     "default_title": "bookmark",
     "default_popup": "html/popup.html"
   },
-
+  
   "background": {
       "scripts": [
         "js/background.js"
@@ -28,11 +28,13 @@
         "http://*/*"
       ],
       "css": [
+        "css/bookmark.css",
         "css/content.css"
       ],
       "js": [
         "js/jquery-1.8.2.min.js",
-        "js/keydowncontrol-0.0.1.js",
+        "js/keydowncontrol-0.0.2.js",
+        "js/bookmark.js",
         "js/content.js"
       ]
     }

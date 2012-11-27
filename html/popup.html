@@ -3,76 +3,15 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>bookmark</title>
-	<style type="text/css">
-		body,
-		div,
-		h1,
-		h2,
-		h3,
-		p,
-		span,
-		input,
-		ul,
-		li{
-			margin: 0;
-			padding: 0;
-		}
-		.header{
-			background: #000;
-			border-bottom: 1px transparent solid;
-			margin: 0;
-			padding: 0;
-			position: relative;
-			height: 200px;
-		}
-		.header .title{
-			background: white;
-			border: 1px transparent solid;
-			-webkit-border-radius: 0;
-			border-radius: 0;
-			color: black;
-			display: block;
-			font-size: 16px;
-			line-height: 20px;
-			margin: 0 0 10px 20px;
-			outline: none;
-			padding: 5px;
-			width: 260px;
-		}
-		.header .mark-top{
-			border: 12px solid;
-			border-color: transparent white white transparent;
-			height: 0;
-			left: 0;
-			position: absolute;
-			bottom: 10px;
-			width: 0;
-			z-index: 9;
-		}
-		.header .mark-bottom{
-			border: 12px solid;
-			border-color: white white transparent transparent;
-			height: 0;
-			left: 0;
-			position: absolute;
-			top: 0;
-			width: 0;
-			z-index: 9;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="../css/bookmark.css">
+	<link rel="stylesheet" type="text/css" href="../css/popup.css">
 </head>
 <body>
-<div class="container">
-	<div class="header">
-		<div class="title"></div>
-		<span class="mark-top"></span>
-		<span class="mark-bottom"></span>
-	</div>
-</div>
+	<div class="bookmark"></div>
 
-<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
-<script type="text/javascript">
-	
-</script>
+<script type="text/javascript" src="../js/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="../js/keydowncontrol-0.0.2.js"></script>
+<script type="text/javascript" src="../js/bookmark.js"></script>
+<script type="text/javascript" src="../js/popup.js"></script>
 </body>
 </html>

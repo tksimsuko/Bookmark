@@ -57,7 +57,7 @@ function KeyDownControl(tgt, metaKeySet, key, callback){
 
 		$bindTarget = $(tgt);
 		$bindTarget.bind("keydown." + bindKey, function(){
-			if(isPressed()) callback();
+			if(isPressed()) callback(event);
 		});
 	}
 
