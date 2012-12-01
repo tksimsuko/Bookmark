@@ -7,13 +7,14 @@
  * Licensed under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  */
-function KeyDownControl(tgt, metaKeySet, key, callback){
+function KeyControl(tgt, type, metaKeySet, key, callback){
 	//初期化
 	var $bindTarget;
-	var bindKey = "KeyDownControl" + new Date().getTime();
+	var bindKey = "KeyControl" + new Date().getTime();
 	var metaKeyProp = {
 		alt: false,
 		ctrl: false,
+		command: false,
 		shift: false
 	};
 	var keyProp = {
@@ -21,6 +22,7 @@ function KeyDownControl(tgt, metaKeySet, key, callback){
 		enter: 13,
 		esc: 27,
 		tab: 9,
+		space: 32,
 		left: 37,
 		up: 38,
 		right: 39,
@@ -57,7 +59,7 @@ function KeyDownControl(tgt, metaKeySet, key, callback){
 
 		$bindTarget = $(tgt);
 		$bindTarget.bind("keydown." + bindKey, function(){
-			if(isPressed()) callback(event);
+			if(isPressed()) return callback(event);
 		});
 	}
 
@@ -78,7 +80,7 @@ function KeyDownControl(tgt, metaKeySet, key, callback){
 		if(targetMetaKey.alt !== event.altKey) return false;
 		if(targetMetaKey.ctrl !== event.ctrlKey) return false;
 		if(targetMetaKey.shift !== event.shiftKey) return false;
-		
+		if(targetMetaKey.command !== event.metaKey) return false;
 		return true;
 	}
 	// key 判定

@@ -1,7 +1,44 @@
-body,div,h1,h2,h3,ul,li,p,span{
+body,div,h1,h2,h3,ul,li,button,p,span{
 	margin: 0;
 	padding: 0;
 }
 body{
 	width: 310px;
+}
+
+.header{
+	line-height: 40px;
+}
+.header .title{
+	font-size: 18px;
+	font-weight: bold;
+	float: left;
+	line-height: 40px;
+	margin-left: 20px;
+}
+.header .settingBtn{
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	float: right;
+	line-height: 30px;
+	margin: 5px;
+	outline: none;
+	width:40px;
+	height: 30px;
+}
+.header .settingBtn img{
+	margin: 5px;
+}
+
+.commandKeyInput{
+	padding: 5px 10px;
+	font-size: 14px;
+	width: 80%;
+}
+
+.fix:after{
+	content: "";
+	clear: both;
+	display: block;
+	visibility: hidden;
 }

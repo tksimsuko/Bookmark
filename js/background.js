@@ -48,4 +48,3 @@ function getBookmarkTree(callback){
 		callback(tree);
 	});
 }
-

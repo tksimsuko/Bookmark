@@ -2,7 +2,7 @@
 	var focusCls = "bm-focus";
 
 //トリガー
-	KeyDownControl(window, [], "up", function(event){
+	KeyControl(window, "keydown", [], "up", function(event){
 		var $focusedItem = $("." + focusCls);
 		if($focusedItem.size()){
 			$focusedItem.removeClass(focusCls);
@@ -17,7 +17,7 @@
 			event.preventDefault();
 		}
 	});
-	KeyDownControl(window, [], "down", function(event){
+	KeyControl(window, "keydown", [], "down", function(event){
 		var $focusedItem = $("." + focusCls);
 		if($focusedItem.size()){
 			var $visibleItem = $(".bm-item:visible");
@@ -37,7 +37,7 @@
 			event.preventDefault();
 		}
 	});
-	KeyDownControl(window, [], "enter", function(){
+	KeyControl(window, "keydown", [], "enter", function(){
 		var $tgt = $(".bm-focus", ".bm-view");
 		if($tgt.size()){
 			$tgt.children(".bm-link")[0].click();
@@ -150,8 +150,8 @@
 	}
 
 //レンダリング
-	function renderBookmark(tgt, response, prop){
-		var html = bookmarkTmpl(response, prop);
+	function renderBookmark(tgt, bookmarkTree, prop){
+		var html = bookmarkTmpl(bookmarkTree, prop);
 		$(tgt).append(html);
 	}
 	function removeBookmarkView(){
@@ -165,11 +165,9 @@
 		}, 0);
 	}
 	function initBookmarkPosition(){
-		window.setTimeout(function(){
-			$bmView = $(".bm-view");
-			$bmView.css("left", document.body.scrollLeft);
-			$bmView.css("top", document.body.scrollTop);
-		}, 0);
+		$bmView = $(".bm-view");
+		$bmView.css("left", window.scrollX);
+		$bmView.css("top", window.scrollY);
 	}
 
 //bookmark tree操作

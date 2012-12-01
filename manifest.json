@@ -33,7 +33,7 @@
       ],
       "js": [
         "js/jquery-1.8.2.min.js",
-        "js/keydowncontrol-0.0.2.js",
+        "js/keycontrol-0.0.2.js",
         "js/bookmark.js",
         "js/content.js"
       ]
