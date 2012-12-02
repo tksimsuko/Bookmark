@@ -1,3 +1,8 @@
+//バインドされたキーコマンド
+	var keyCommand;
+	var newTabCommand;
+	var newWindowCommand;
+
 //クラス名
 	var focusCls = "bm-focus";
 
@@ -37,12 +42,7 @@
 			event.preventDefault();
 		}
 	});
-	KeyControl(window, "keydown", [], "enter", function(){
-		var $tgt = $(".bm-focus", ".bm-view");
-		if($tgt.size()){
-			$tgt.children(".bm-link")[0].click();
-		}
-	});
+
 
 //フォーム操作
 	$(document).on("click", ".bm-close", function(){
@@ -98,7 +98,7 @@
 						"<span class='bm-mark-top'></span>" +
 						"<span class='bm-mark-bottom'></span>" +
 						// "<a class='bm-input-reset' href='#'>×</a>" + 
-						"<span class='bm-close'>×</span>" +
+						(prop.isCloseBtn ? "<span class='bm-close'>×</span>" : "") +
 					"</div>" + 
 					"<div class='bm-content'>" + 
 						bookmarkTreeTmpl(tree, prop) + 

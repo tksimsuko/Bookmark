@@ -14,6 +14,18 @@ chrome.extension.onMessage.addListener(
 			case "getBookmarkTree":
 				sendResponse(bookmarkTrees);
 				break;
+			case "getKeyCommand":
+				sendResponse({
+					keyCommand: getKeyCommand(),
+					newTabCommand: getNewTabCommand(),
+					newWindowCommand: getNewWindowCommand()
+				});
+				break;
+			case "openNewWindow":
+				chrome.windows.create({
+					url: request.url
+				});
+				break;
 			default :
 				sendResponse();
 				break;
@@ -46,5 +58,48 @@ function setBookmarkTree(){
 function getBookmarkTree(callback){
 	chrome.bookmarks.getTree(function(tree){
 		callback(tree);
+	});
+}
+function getKeyCommand(){
+	return JSON.parse(window.localStorage.getItem("keyCommand"));
+}
+function setKeyCommand(keys){
+	window.localStorage.setItem("keyCommand", JSON.stringify(keys));
+}
+function getNewTabCommand(){
+	return JSON.parse(window.localStorage.getItem("newTabCommand"));
+}
+function setNewTabCommand(keys){
+	window.localStorage.setItem("newTabCommand", JSON.stringify(keys));
+}
+function getNewWindowCommand(){
+	return JSON.parse(window.localStorage.getItem("newWindowCommand"));
+}
+function setNewWindowCommand(keys){
+	window.localStorage.setItem("newWindowCommand", JSON.stringify(keys));
+}
+function notifyChangeCommand(){
+	chrome.windows.getAll({populate: true}, function(windows){
+		for(var i in windows){
+			var win = windows[i];
+			var tabs = win.tabs;
+			for(var j in tabs){
+				var tab = tabs[j];
+				chrome.tabs.sendMessage(tab.id, {
+					status: "changeCommand",
+					keyCommand: getKeyCommand(),
+					newTabCommand: getNewTabCommand(),
+					newWindowCommand: getNewWindowCommand()
+				}, function(){});
+			}
+		}
+	});
+}
+function openSelfPage(url){
+	chrome.tabs.getSelected(null, function(tab){
+		chrome.tabs.sendMessage(tab.id, {
+			status: "openSelfPage",
+			url: url
+		}, function(){});
 	});
 }

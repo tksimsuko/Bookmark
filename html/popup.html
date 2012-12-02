@@ -10,15 +10,29 @@
 	<div class="header fix">
 		<h1 class="title">Bookmark</h1>
 		<button class="settingBtn">
-			<img src="../img/settings.png" width="20px" />
+			<span>setting</span>
 		</button>
 	</div>
 	<div class="setting">
-		<p>display search form command</p>
-		<p>
-			<input placeholder="enter key command" class="commandKeyInput" type="text" />
-		</p>
-
+		<div class="settingForm">
+			<p class="formTitle">show bookmark in web page</p>
+			<p>
+				<input placeholder="ctrl + space" class="keyCommand" type="text" />
+			</p>
+			<p class="devider"></p>
+			<p class="formTitle">open new tab</p>
+			<p>
+				<input type="text" placeholder="alt + " class="newTabCommand" />
+				<span> enter</span>
+			</p>
+			<p class="devider"></p>
+			<p class="formTitle">open new window</p>
+			<p>
+				<input type="text" placeholder="shift + " class="newWindowCommand" />
+				<span> enter</span>
+			</p>
+		</div>
+		<p class="settingCloseBtn">▲</p>
 	</div>
 	<div class="bookmark"></div>
 
