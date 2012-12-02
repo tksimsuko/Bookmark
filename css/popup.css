@@ -74,16 +74,6 @@ body{
 .newWindowCommand{
 	width: 40%;
 }
-.settingCloseBtn{
-	background-color: black;
-	border: 1px solid;
-	border-color: #252525;
-	color: white;
-	cursor: pointer;
-	font-size: 12px;
-	margin-top: 10px;
-	text-align: center;
-}
 
 .fix:after{
 	content: "";

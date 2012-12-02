@@ -225,12 +225,6 @@ $(".settingBtn").click(function(){
 		$setting.slideUp(100);
 	}
 });
-$(".settingCloseBtn").click(function(){
-	var $setting = $(".setting");
-	if($setting.is(":visible")){
-		$setting.slideUp(100);
-	}
-});
 
 function getKeyCommand(){
 	return chrome.extension.getBackgroundPage().getKeyCommand();
