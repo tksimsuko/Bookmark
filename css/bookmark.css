@@ -128,11 +128,15 @@ html body .bm-view .bm-item .bm-item-title{
 	color: #353535;
 	font-size: 14px;
 	font-weight: bold;
-	line-height: 16px;
+	line-height: 18px;
 	margin: 0 0 5px 0;
 	padding: 0;
 	text-align: left;
 	word-wrap: break-word;
+}
+html body .bm-view .bm-item .bm-favicon{
+	margin-right: 10px;
+	vertical-align: bottom;
 }
 html body .bm-view .bm-item .bm-item-title-search{
 	display: none;

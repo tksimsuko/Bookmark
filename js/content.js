@@ -35,7 +35,10 @@ var newWindowEvt;
 				sendRequest({
 					status: "getBookmarkTree"	
 				}, function(bookmarkTrees){
-					renderBookmark("body", bookmarkTrees, {isCloseBtn: true});
+					renderBookmark("body", bookmarkTrees, {
+						isCloseBtn: true,
+						isFavicon: false
+					});
 					initBookmarkPosition();
 					initBookmarkForm();
 				});

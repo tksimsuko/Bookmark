@@ -23,7 +23,10 @@ var defWindowCommand = {
 
 // 初期化
 chrome.extension.getBackgroundPage().getBookmarkTree(function(tree){
-	renderBookmark(".bookmark", tree, {});
+	renderBookmark(".bookmark", tree, {
+		isCloseBtn: false,
+		isFavicon: true
+	});
 	initSettingForm();
 	initBookmarkForm();
 	initEnterEvent();

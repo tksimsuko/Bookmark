@@ -45,6 +45,7 @@
       "http://*/*",
       "tabs",
       "bookmarks",
+      "chrome://favicon/",
       "unlimitedStorage"
   ]
 }

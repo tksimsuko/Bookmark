@@ -136,10 +136,11 @@
 	function bookmarkItemTmpl(node, prop){
 		var title = escape(node.title);
 		var url = escape(node.url);
-
+		var faviconURL = "chrome://favicon/" + url;
 		return "<li class='bm-item'>" +
 					"<a class='bm-link' href='" + url + "'>" + 
 						"<p class='bm-item-title'>" + 
+							(prop.isFavicon?"<img class='bm-favicon' src='" + faviconURL + "' />":"") + 
 							(title?title:"&nbsp;") + 
 						"</p>" +  
 						"<p class='bm-url'>" + url + "</p>" + 
