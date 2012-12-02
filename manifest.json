@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "manifest_version": 2,
 
-  "description": "",
+  "description": "search bookmark quickly.",
    "icons": {
-    "16": "img/icon.png",
-    "48": "img/icon.png",
-    "128": "img/icon.png"
+    "16": "img/icon_016.png",
+    "48": "img/icon_048.png",
+    "128": "img/icon_128.png"
   },
 
   "browser_action": {
-    "default_icon": "img/icon.png", 
+    "default_icon": "img/icon_048.png", 
     "default_title": "bookmark",
     "default_popup": "html/popup.html"
   },
@@ -45,7 +45,6 @@
       "http://*/*",
       "tabs",
       "bookmarks",
-      "chrome://favicon/",
-      "unlimitedStorage"
+      "chrome://favicon/"
   ]
 }
