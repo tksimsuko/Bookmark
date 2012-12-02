@@ -1,4 +1,3 @@
-
 //初期化
 var keydownCommandEvt;
 var keyPressCommandEvt;

@@ -1,3 +1,15 @@
+//デフォルト　キーコマンド
+var defCommand = {
+	meta: ["ctrl"],
+	key: "space"
+};
+var defTabCommand = {
+	meta: ["alt"]
+};
+var defWindowCommand = {
+	meta: ["shift"]
+};
+
 var bookmarkTrees;
 setBookmarkTree();
 
@@ -61,19 +73,25 @@ function getBookmarkTree(callback){
 	});
 }
 function getKeyCommand(){
-	return JSON.parse(window.localStorage.getItem("keyCommand"));
+	var cmd = JSON.parse(window.localStorage.getItem("keyCommand"));
+	if(!cmd) cmd = defCommand;
+	return cmd;
 }
 function setKeyCommand(keys){
 	window.localStorage.setItem("keyCommand", JSON.stringify(keys));
 }
 function getNewTabCommand(){
-	return JSON.parse(window.localStorage.getItem("newTabCommand"));
+	var cmd = JSON.parse(window.localStorage.getItem("newTabCommand"));
+	if(!cmd) cmd = defTabCommand;
+	return cmd;
 }
 function setNewTabCommand(keys){
 	window.localStorage.setItem("newTabCommand", JSON.stringify(keys));
 }
 function getNewWindowCommand(){
-	return JSON.parse(window.localStorage.getItem("newWindowCommand"));
+	var cmd = JSON.parse(window.localStorage.getItem("newWindowCommand"));
+	if(!cmd) cmd = defWindowCommand
+	return cmd;
 }
 function setNewWindowCommand(keys){
 	window.localStorage.setItem("newWindowCommand", JSON.stringify(keys));
