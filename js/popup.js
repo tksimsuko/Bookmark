@@ -164,9 +164,13 @@ $(document).on("keyup", ".keyCommand, .newTabCommand, .newWindowCommand", functi
 	event.preventDefault();
 	return false;
 });
+
+//クリック　ページ遷移　イベント
 $(document).on("click", ".bm-link", function(){
 	var href = $(this).attr("href");
-	openSelfPage(href);
+	chrome.tabs.create({
+		url: href
+	});
 });
 
 // イベント初期化

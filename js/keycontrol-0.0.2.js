@@ -1,7 +1,7 @@
 /**
- * keydowncontrol.js
+ * keycontrol.js
  *
- * @version  0.0.2
+ * @version  0.0.3
  *
  * Copyright 2012 tksimsuko.
  * Licensed under the MIT License:
@@ -34,7 +34,7 @@ function KeyControl(tgt, type, metaKeySet, key, callback){
 	
 	return {
 		unbind: function(){
-			$bindTarget.unbind("keydown." + bindKey);
+			$bindTarget.unbind(type + "." + bindKey);
 		}
 	}
 
@@ -58,7 +58,7 @@ function KeyControl(tgt, type, metaKeySet, key, callback){
 		}
 
 		$bindTarget = $(tgt);
-		$bindTarget.bind("keydown." + bindKey, function(){
+		$bindTarget.bind(type + "." + bindKey, function(){
 			if(isPressed()) return callback(event);
 		});
 	}

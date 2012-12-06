@@ -43,7 +43,7 @@ var newWindowEvt;
 				});
 			}
 		});
-		keyPressCommandEvt = KeyControl(window, "keypress", keyCommand.meta, keyCommand.key, function(event){
+		keyPressCommandEvt = KeyControl(window, "keydown", keyCommand.meta, keyCommand.key, function(event){
 			return false;
 		});
 		escCommandEvt = KeyControl(window, "keydown", [], "esc", function(event){
