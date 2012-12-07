@@ -61,14 +61,13 @@
 			return false;
 		}
 		var words = val.split(/ |　/g);
-
-		var $filteredItemTitle = $(".bm-item-title", ".bm-view");
-		var $filteredItemUrl = $(".bm-url", ".bm-view");
+		var $filteredItemTitle = $(".bm-item-title-search", ".bm-view");
+		var $filteredItemUrl = $(".bm-url-search", ".bm-view");
 		for(var i in words){
 			var word = words[i].toLowerCase();
 			if(!word) continue;
-			$filteredItemTitle = $filteredItemTitle.filter(":contains('" + word + "')");
-			$filteredItemUrl = $filteredItemUrl.filter(":contains('" + word + "')");
+			$filteredItemTitle = $filteredItemTitle.filter(":contains(" + word + ")");
+			$filteredItemUrl = $filteredItemUrl.filter(":contains(" + word + ")");
 		}
 
 		$items.hide();
@@ -90,6 +89,29 @@
 		$(this).removeClass(focusCls);
 	});
 
+	//検索　検証用
+	function search(vl){
+		var val = vl.toLowerCase();
+		var $items = $(".bm-item", ".bm-view");
+		if(!val){
+			$items.hide();
+			return false;
+		}
+		var words = val.split(/ |　/g);
+		var $filteredItemTitle = $(".bm-item-title-search", ".bm-view");
+		var $filteredItemUrl = $(".bm-url-search", ".bm-view");
+		for(var i in words){
+			var word = words[i].toLowerCase();
+			if(!word) continue;
+			$filteredItemTitle = $filteredItemTitle.filter(":contains(" + word + ")");
+			$filteredItemUrl = $filteredItemUrl.filter(":contains(" + word + ")");
+		}
+
+		$items.hide();
+		$(".bm-content").show();
+		$filteredItemTitle.parents(".bm-item").show();
+		$filteredItemUrl.parents(".bm-item").show();
+	}
 //テンプレート
 	function bookmarkTmpl(tree, prop){
 		return 	"<div class='bm-view'>" + 
