@@ -1,9 +1,0 @@
-html body .bm-view{
-	left: -400px;
-	position: absolute;
-	top: 0;
-	z-index: 9999;
-
-	-webkit-transition: left 100ms ease-in-out;
-	transition: left 100ms ease-in-out;
-}
