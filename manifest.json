@@ -1,6 +1,6 @@
 {
   "name": "Bookmark",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "manifest_version": 2,
 
   "description": "search bookmark quickly.",
@@ -21,25 +21,6 @@
         "js/background.js"
       ]
   },
-  "content_scripts": [
-    {
-      "matches": [
-        "https://*/*",
-        "http://*/*"
-      ],
-      "css": [
-        "css/bookmark.css",
-        "css/content.css"
-      ],
-      "js": [
-        "js/jquery-1.8.2.min.js",
-        "js/keycontrol-0.0.2.js",
-        "js/bookmark.js",
-        "js/content.js"
-      ]
-    }
-  ],
-
   "permissions": [
       "https://*/*",
       "http://*/*",

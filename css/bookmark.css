@@ -1,19 +1,41 @@
-html body .bm-view{
-	background: white;
-	border: 5px #000 solid;
-	border-top: 15px #000 solid;
+/* base */
+body,div,h1,h2,h3,ul,li,button,p,span{
 	margin: 0;
 	padding: 0;
-	width: 300px;
+}
+body{
+	width: 360px;
+
+}
+::-webkit-scrollbar {
+	width: 10px;
+}
+::-webkit-scrollbar-thumb {
+	background: #333;
+	border-radius: 3px;
 }
 
-html body .bm-view div,
-html body .bm-view ul,
-html body .bm-view li,
-html body .bm-view input,
-html body .bm-view p,
-html body .bm-view span,
-html body .bm-view a{
+.fix:after{
+	content: "";
+	clear: both;
+	display: block;
+	visibility: hidden;
+}
+
+/* bookmark */
+.bm-view{
+	background: white;
+	margin: 0;
+	padding: 0;
+}
+
+.bm-view div,
+.bm-view ul,
+.bm-view li,
+.bm-view input,
+.bm-view p,
+.bm-view span,
+.bm-view a{
 	box-shadow: none;
 	font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",sans-serif;
 	margin: 0;
@@ -21,23 +43,23 @@ html body .bm-view a{
 	text-shadow: none;
 }
 
-html body .bm-view div,
-html body .bm-view ul,
-html body .bm-view li{
+.bm-view div,
+.bm-view ul,
+.bm-view li{
 	display: block;
 	left: 0;
 	top: 0;
 }
 
 /* フォーム */
-html body .bm-view .bm-form{
-	background: #000;
+.bm-view .bm-form{
+	background: #111;
 	border-bottom: 1px transparent solid;
 	margin: 0;
-	padding: 0;
+	padding: 10px 10px 10px 40px;
 	position: relative;
 }
-html body .bm-view .bm-form .bm-input{
+.bm-view .bm-form .bm-input{
 	background: white;
 	border: 1px transparent solid;
 	-webkit-border-radius: 0;
@@ -46,32 +68,32 @@ html body .bm-view .bm-form .bm-input{
 	display: block;
 	font-size: 16px;
 	line-height: 20px;
-	margin: 0 0 10px 20px;
+	margin: 0;
 	outline: none;
 	padding: 5px;
-	width: 260px;
+	width: 290px;
 }
-html body .bm-view .bm-form .bm-mark-top{
-	border: 12px solid;
+.bm-view .bm-form .bm-mark-top{
+	border: 10px solid;
 	border-color: transparent white white transparent;
 	height: 0;
-	left: 0;
+	width: 0;
 	position: absolute;
+	left: 20px;
 	bottom: 10px;
-	width: 0;
 	z-index: 9;
 }
-html body .bm-view .bm-form .bm-mark-bottom{
-	border: 12px solid;
+.bm-view .bm-form .bm-mark-bottom{
+	border: 10px solid;
 	border-color: white white transparent transparent;
-	height: 0;
-	left: 0;
 	position: absolute;
-	top: 0;
+	height: 0;
 	width: 0;
+	left: 20px;
+	top: 10px;
 	z-index: 9;
 }
-html body .bm-view .bm-form .bm-input-reset{
+.bm-view .bm-form .bm-input-reset{
 	color: #999;
 	cursor: pointer;
 	font-size: 18px;
@@ -83,7 +105,7 @@ html body .bm-view .bm-form .bm-input-reset{
 	text-decoration: none;
 	top: 8px;
 }
-html body .bm-view .bm-form .bm-close{
+.bm-view .bm-form .bm-close{
 	color: #999;
 	cursor: pointer;
 	font-size: 14px;
@@ -94,64 +116,70 @@ html body .bm-view .bm-form .bm-close{
 	text-decoration: none;
 	top: -15px;
 }
-html body .bm-view .bm-form .bm-close:hover{
+.bm-view .bm-form .bm-close:hover{
 	color: red;
 }
 
 /* 枠 */
-html body .bm-view .bm-content{
+.bm-view .bm-content{
 	display: none;
 }
-html body .bm-view .bm-list{
+.bm-view .bm-list{
 	list-style: none;
 }
 
 /* フォルダ */
-html body .bm-view .bm-folder-item{
+.bm-view .bm-folder-item{
 	
 }
-html body .bm-view .bm-folder-title{
+.bm-view .bm-folder-title{
 	display: none;
 }
 
 /* ブックマーク */
-html body .bm-view .bm-item{
-	border-bottom: 3px #000 solid;
-	padding: 5px 10px;
+.bm-view .bm-item{
+	border-right: 3px #111 solid;
+	border-left: 3px #111 solid;
+	border-bottom: 3px #111 solid;
+	padding: 0 10px;
 }
-html body .bm-view .bm-item .bm-link{
+.bm-view .bm-item .bm-link{
 	outline: none;
 	text-align: left;
 	text-decoration: none;
 }
-html body .bm-view .bm-item .bm-item-title{
+.bm-view .bm-item .bm-item-title{
 	color: #353535;
 	font-size: 14px;
 	font-weight: bold;
 	line-height: 18px;
-	margin: 0 0 5px 0;
-	padding: 0;
+	padding: 10px 0;
+	margin: 0;
 	text-align: left;
 	word-wrap: break-word;
 }
-html body .bm-view .bm-item .bm-favicon{
+.bm-view .bm-item .bm-favicon{
 	margin-right: 10px;
 	vertical-align: bottom;
 }
-html body .bm-view .bm-item .bm-item-title-search{
+.bm-view .bm-item .bm-item-title-search{
 	display: none;
 }
-html body .bm-view .bm-item .bm-url{
+.bm-view .bm-item .bm-url{
 	color: #555;
 	font-size: 14px;
 	line-height: 16px;
 	margin: 0;
-	padding: 0;
+	padding: 5px 0;
+	border-top: 1px dotted #CCC;
 	word-wrap: break-word;
 }
-html body .bm-view .bm-item .bm-url-search{
+.bm-view .bm-item .bm-url-search{
 	display: none;
 }
-html body .bm-view .bm-item.bm-focus{
+.bm-view .bm-item.bm-focus{
 	background: gold;
+}
+.bm-view .bm-item.bm-hover{
+	background: #ffe766;
 }

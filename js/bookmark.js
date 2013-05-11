@@ -1,28 +1,35 @@
-//バインドされたキーコマンド
-	var keyCommand;
-	var newTabCommand;
-	var newWindowCommand;
 
 //クラス名
 	var focusCls = "bm-focus";
+	var hoverCls = "bm-hover";
 
 //トリガー
 	KeyControl(window, "keydown", [], "up", function(event){
-		var $focusedItem = $("." + focusCls);
-		if($focusedItem.size()){
-			$focusedItem.removeClass(focusCls);
-			var $visibleItem = $(".bm-item:visible");
-			var index = $visibleItem.index($focusedItem);
-			if(index === -1) return;
-			if(index === 0){
-				$(".bm-input").focus();
-			}else{
-				$visibleItem.eq(index - 1).focus();
-			}
-			event.preventDefault();
-		}
+		keyUpHandler(event);
 	});
 	KeyControl(window, "keydown", [], "down", function(event){
+		keyDownHandler(event);
+	});
+	KeyControl(window, "keydown", ["shift"], "tab", function(event){
+		keyUpHandler(event);
+		return false;
+	});
+	KeyControl(window, "keydown", [], "tab", function(event){
+		keyDownHandler(event);
+		return false;
+	});
+	function keyUpHandler(event){
+		var $focusedItem = $("." + focusCls);
+		if($focusedItem.size()){
+			var $visibleItem = $(".bm-item:visible");
+			var index = $visibleItem.index($focusedItem);
+			if(index <= 0) return;
+			$focusedItem.removeClass(focusCls);
+			$visibleItem.eq(index - 1).focus();
+		}
+		event.preventDefault();
+	}
+	function keyDownHandler(event){
 		var $focusedItem = $("." + focusCls);
 		if($focusedItem.size()){
 			var $visibleItem = $(".bm-item:visible");
@@ -32,19 +39,22 @@
 			if($nextItem.size()){
 				$focusedItem.removeClass(focusCls);
 				$nextItem.focus();
-				event.preventDefault();
 			}
 		}else{
 			var $firstItem = $(".bm-item:visible", ".bm-content").eq(0);
 			if(!$firstItem.size()) return;
 			$(".bm-input").blur();
 			$firstItem.focus();
-			event.preventDefault();
+			
 		}
-	});
+		event.preventDefault();
+	}
 
 
 //フォーム操作
+	var keyDownTimerId;
+	var ovserveInterval = 100;
+	var oldWord = "";
 	$(document).on("click", ".bm-close", function(){
 		removeBookmarkView();
 		return false;
@@ -56,10 +66,15 @@
 	}).on("keyup", ".bm-input", function(){
 		var val = $(this).val().toLowerCase();
 		var $items = $(".bm-item", ".bm-view");
+
 		if(!val){
 			$items.hide();
 			return false;
 		}
+
+		var isSameWord = oldWord === val;
+		oldWord = val;
+
 		var words = val.split(/ |　/g);
 		var $filteredItemTitle = $(".bm-item-title-search", ".bm-view");
 		var $filteredItemUrl = $(".bm-url-search", ".bm-view");
@@ -75,21 +90,39 @@
 		$filteredItemTitle.parents(".bm-item").show();
 		$filteredItemUrl.parents(".bm-item").show();
 
+		if(!isSameWord){
+			ovserveItem();	
+		}
+		
 		return false;
-	}).on("focus", ".bm-input", function(){
-		$(".bm-item").removeClass(focusCls);
 	}).on("focus", ".bm-item", function(){
 		$(this).addClass(focusCls);
 	}).on("blur", ".bm-item", function(){
 		$(this).removeClass(focusCls);
 	}).on("mouseover", ".bm-item", function(){
-		$(".bm-item").removeClass(focusCls);
-		$(this).addClass(focusCls);
+		$(".bm-item").removeClass(hoverCls);
+		$(this).addClass(hoverCls);
 	}).on("mouseout", ".bm-item", function(){
-		$(this).removeClass(focusCls);
+		$(this).removeClass(hoverCls);
 	});
+	function ovserveItem(){
+		if(keyDownTimerId){
+			clearTimeout(keyDownTimerId);	
+		}
+		keyDownTimerId = setTimeout(function(){
+			activeNextItem();
+		}, ovserveInterval);
+	}
+	function activeNextItem(){
+		var activeItem = $(".bm-item:visible");
+		var focusItem = $("." + focusCls);
+		if(activeItem.size()){
+			$(".bm-item").removeClass(focusCls);
+			activeItem.eq(0).addClass(focusCls);
+		}
+	}
 
-	//検索　検証用
+	//検索
 	function search(vl){
 		var val = vl.toLowerCase();
 		var $items = $(".bm-item", ".bm-view");
@@ -111,6 +144,12 @@
 		$(".bm-content").show();
 		$filteredItemTitle.parents(".bm-item").show();
 		$filteredItemUrl.parents(".bm-item").show();
+		
+		if(!isSameWord){
+			ovserveItem();	
+		}
+		
+		return false;
 	}
 //テンプレート
 	function bookmarkTmpl(tree, prop){
@@ -119,7 +158,6 @@
 						"<input placeholder='search bookmark' type='text' class='bm-input' />" + 
 						"<span class='bm-mark-top'></span>" +
 						"<span class='bm-mark-bottom'></span>" +
-						// "<a class='bm-input-reset' href='#'>×</a>" + 
 						(prop.isCloseBtn ? "<span class='bm-close'>×</span>" : "") +
 					"</div>" + 
 					"<div class='bm-content'>" + 
@@ -187,11 +225,6 @@
 			$(".bm-input").focus();
 		}, 0);
 	}
-	function initBookmarkPosition(){
-		$bmView = $(".bm-view");
-		$bmView.css("left", window.scrollX);
-		$bmView.css("top", window.scrollY);
-	}
 
 //bookmark tree操作
 	function isFolder(node){
@@ -205,11 +238,5 @@
 				.replace(/>/g, "&gt;")
 				.replace(/&/g, "&amp;")
 				.replace(/"/g, "&quot;");
-	}
-	function getOrigin(url){
-		var urlAry = url.replace(/:\//, "").split(/\//);
-		var scheme = urlAry[0];
-		var host_port = urlAry[1];
-		return scheme + "://" + host_port;
 	}
 

@@ -1,15 +1,3 @@
-//デフォルト　キーコマンド
-var defCommand = {
-	meta: ["ctrl"],
-	key: "space"
-};
-var defTabCommand = {
-	meta: ["alt"]
-};
-var defWindowCommand = {
-	meta: ["shift"]
-};
-
 var bookmarkTrees;
 setBookmarkTree();
 
@@ -25,18 +13,6 @@ chrome.extension.onMessage.addListener(
 		switch(status){
 			case "getBookmarkTree":
 				sendResponse(bookmarkTrees);
-				break;
-			case "getKeyCommand":
-				sendResponse({
-					keyCommand: getKeyCommand(),
-					newTabCommand: getNewTabCommand(),
-					newWindowCommand: getNewWindowCommand()
-				});
-				break;
-			case "openNewWindow":
-				chrome.windows.create({
-					url: request.url
-				});
 				break;
 			default :
 				sendResponse();
@@ -70,54 +46,5 @@ function setBookmarkTree(){
 function getBookmarkTree(callback){
 	chrome.bookmarks.getTree(function(tree){
 		callback(tree);
-	});
-}
-function getKeyCommand(){
-	var cmd = JSON.parse(window.localStorage.getItem("keyCommand"));
-	if(!cmd) cmd = defCommand;
-	return cmd;
-}
-function setKeyCommand(keys){
-	window.localStorage.setItem("keyCommand", JSON.stringify(keys));
-}
-function getNewTabCommand(){
-	var cmd = JSON.parse(window.localStorage.getItem("newTabCommand"));
-	if(!cmd) cmd = defTabCommand;
-	return cmd;
-}
-function setNewTabCommand(keys){
-	window.localStorage.setItem("newTabCommand", JSON.stringify(keys));
-}
-function getNewWindowCommand(){
-	var cmd = JSON.parse(window.localStorage.getItem("newWindowCommand"));
-	if(!cmd) cmd = defWindowCommand
-	return cmd;
-}
-function setNewWindowCommand(keys){
-	window.localStorage.setItem("newWindowCommand", JSON.stringify(keys));
-}
-function notifyChangeCommand(){
-	chrome.windows.getAll({populate: true}, function(windows){
-		for(var i in windows){
-			var win = windows[i];
-			var tabs = win.tabs;
-			for(var j in tabs){
-				var tab = tabs[j];
-				chrome.tabs.sendMessage(tab.id, {
-					status: "changeCommand",
-					keyCommand: getKeyCommand(),
-					newTabCommand: getNewTabCommand(),
-					newWindowCommand: getNewWindowCommand()
-				}, function(){});
-			}
-		}
-	});
-}
-function openSelfPage(url){
-	chrome.tabs.getSelected(null, function(tab){
-		chrome.tabs.sendMessage(tab.id, {
-			status: "openSelfPage",
-			url: url
-		}, function(){});
 	});
 }
