@@ -178,8 +178,8 @@ body{
 	display: none;
 }
 .bm-view .bm-item.bm-focus{
-	background: gold;
+	background: #ffe766;
 }
 .bm-view .bm-item.bm-hover{
-	background: #ffe766;
+	background: #ffef99;
 }
