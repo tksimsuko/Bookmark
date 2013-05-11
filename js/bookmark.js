@@ -100,10 +100,8 @@
 	}).on("blur", ".bm-item", function(){
 		$(this).removeClass(focusCls);
 	}).on("mouseover", ".bm-item", function(){
-		$(".bm-item").removeClass(hoverCls);
-		$(this).addClass(hoverCls);
-	}).on("mouseout", ".bm-item", function(){
-		$(this).removeClass(hoverCls);
+		$(".bm-item").removeClass(focusCls);
+		$(this).addClass(focusCls);
 	});
 	function ovserveItem(){
 		if(keyDownTimerId){
