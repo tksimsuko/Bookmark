@@ -1,6 +1,6 @@
 {
   "name": "Bookmark",
-  "version": "2.0.2",
+  "version": "2.0.4",
   "manifest_version": 2,
 
   "description": "search bookmark quickly.",
@@ -21,10 +21,8 @@
         "js/background.js"
       ]
   },
+  
   "permissions": [
-      "https://*/*",
-      "http://*/*",
-      "tabs",
       "bookmarks",
       "chrome://favicon/"
   ]
