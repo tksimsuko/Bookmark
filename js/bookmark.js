@@ -20,7 +20,7 @@
 	});
 	function keyUpHandler(event){
 		var $focusedItem = $("." + focusCls);
-		if($focusedItem.size()){
+		if($focusedItem.length){
 			var $visibleItem = $(".bm-item:visible");
 			var index = $visibleItem.index($focusedItem);
 			if(index <= 0) return;
@@ -31,18 +31,18 @@
 	}
 	function keyDownHandler(event){
 		var $focusedItem = $("." + focusCls);
-		if($focusedItem.size()){
+		if($focusedItem.length){
 			var $visibleItem = $(".bm-item:visible");
 			var index = $visibleItem.index($focusedItem);
 			if(index === -1) return;
 			var $nextItem = $visibleItem.eq(index + 1);
-			if($nextItem.size()){
+			if($nextItem.length){
 				$focusedItem.removeClass(focusCls);
 				$nextItem.focus();
 			}
 		}else{
 			var $firstItem = $(".bm-item:visible", ".bm-content").eq(0);
-			if(!$firstItem.size()) return;
+			if(!$firstItem.length) return;
 			$(".bm-input").blur();
 			$firstItem.focus();
 			
@@ -114,7 +114,7 @@
 	function activeNextItem(){
 		var activeItem = $(".bm-item:visible");
 		var focusItem = $("." + focusCls);
-		if(activeItem.size()){
+		if(activeItem.length > 0){
 			$(".bm-item").removeClass(focusCls);
 			activeItem.eq(0).addClass(focusCls);
 		}
@@ -194,7 +194,8 @@
 	function bookmarkItemTmpl(node, prop){
 		var title = escape(node.title);
 		var url = escape(node.url);
-		var faviconURL = "chrome://favicon/" + url;
+		const domain = new URL(url).hostname;
+		var faviconURL = `https://www.google.com/s2/favicons?domain=${domain}`;
 		return "<li class='bm-item'>" +
 					"<a class='bm-link' href='" + url + "'>" + 
 						"<p class='bm-item-title'>" + 
@@ -214,7 +215,7 @@
 		$(tgt).append(html);
 	}
 	function removeBookmarkView(){
-		if($(".bm-view").size())
+		if($(".bm-view").length)
 			$(".bm-view").remove();
 	}
 // フォーム初期化

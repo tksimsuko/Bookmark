@@ -1,22 +1,25 @@
 // 初期化
-chrome.extension.getBackgroundPage().getBookmarkTree(function(tree){
+chrome.runtime.sendMessage({ status: "getBookmarkTree" }, function (tree) {
+	if (!tree) return;
+
 	renderBookmark(".bookmark", tree, {
 		isCloseBtn: false,
 		isFavicon: true
 	});
+
 	initBookmarkForm();
 });
 
 
 //クリック　ページ遷移　イベント
-$(document).on("click", ".bm-link", function(event){
+$(document).on("click", ".bm-link", function (event) {
 	var href = $(this).attr("href");
 
-	if(event.shiftKey){
+	if (event.shiftKey) {
 		chrome.windows.create({
 			url: href
 		});
-	}else{
+	} else {
 		chrome.tabs.create({
 			url: href
 		});
@@ -24,18 +27,18 @@ $(document).on("click", ".bm-link", function(event){
 	event.preventDefault();
 	return false;
 });
-KeyControl(window, "keydown", [], "enter", function(event){
+KeyControl(window, "keydown", [], "enter", function (event) {
 	var bm = $("." + focusCls);
-	if(!bm.size()) return;
+	if (!bm.size()) return;
 
 	var href = bm.children("a").attr("href");
 	chrome.tabs.create({
 		url: href
 	});
 });
-KeyControl(window, "keydown", ["shift"], "enter", function(event){
+KeyControl(window, "keydown", ["shift"], "enter", function (event) {
 	var bm = $("." + focusCls);
-	if(!bm.size()) return;
+	if (!bm.size()) return;
 
 	var href = bm.children("a").attr("href");
 	chrome.windows.create({
